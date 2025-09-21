@@ -334,7 +334,7 @@ if [ $nvidia_installed == 1 ]; then
         echo "Tensort RT New"
         $STD pip3 install tensorrt
   fi
-  
+  read -p "Press Enter to continue..."
   $STD pip3 install cuda-core[cu${NVD_MAJOR_CUDA}]
   TRT_VER=$(pip freeze | grep -e "^tensorrt==" | sed "s|tensorrt==||g")
   TRT_VER=$(cut -d. -f1-3 <<<${TRT_VER})
