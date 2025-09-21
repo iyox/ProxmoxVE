@@ -326,7 +326,15 @@ if [ $nvidia_installed == 1 ]; then
 
   msg_info "Installing TensorRT Object Detection Model (Patience)"
   $STD pip3 uninstall -y onnxruntime-openvino tensorflow-cpu
-  $STD pip3 install tensorrt
+  export GPU_VER=$(nvidia-smi --query-gpu=compute_cap --format=csv | sed -n '2p')
+  if [[ "${GPU_VER%.*}" -lt 7 ]]; then
+        echo "Tensort RT 8.6.1"
+        $STD pip3 install tensorrt==8.6.1.post1
+  else
+        echo "Tensort RT New"
+        $STD pip3 install tensorrt
+  fi
+  
   $STD pip3 install cuda-core[cu${NVD_MAJOR_CUDA}]
   TRT_VER=$(pip freeze | grep -e "^tensorrt==" | sed "s|tensorrt==||g")
   TRT_VER=$(cut -d. -f1-3 <<<${TRT_VER})
