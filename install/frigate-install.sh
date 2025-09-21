@@ -308,8 +308,8 @@ if [ $nvidia_installed == 1 ]; then
 #  $STD apt update && sleep 1
   #Cap to CUDA 12
   if [[ "${NVD_MAJOR_CUDA}" -gt 12 ]]; then
-    TARGET_CUDA_VER=12
-    NVD_MAJOR_CUDA=12
+    TARGET_CUDA_VER=11
+    NVD_MAJOR_CUDA=11
   fi
   $STD apt update
   $STD apt install -qqy "cuda-toolkit-$TARGET_CUDA_VER"
@@ -333,6 +333,7 @@ if [ $nvidia_installed == 1 ]; then
   else
         echo "Tensort RT New"
         $STD pip3 install tensorrt
+        
   fi
   read -p "Press Enter to continue..."
   $STD pip3 install cuda-core[cu${NVD_MAJOR_CUDA}]
