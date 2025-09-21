@@ -1150,7 +1150,7 @@ EOF'
 
   # This executes post_create_lxc.sh for additional configurations (default user, shared mount directory, postfix satellite)
   source <(curl -fsSL https://raw.githubusercontent.com/remz1337/ProxmoxVE/remz/misc/post_create_lxc.sh)
-  lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://raw.githubusercontent.com/remz1337/ProxmoxVE/remz/install/"$var_install".sh)" $?
+  lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://raw.githubusercontent.com/iyox/ProxmoxVE/remz/install/"$var_install".sh)" $?
 }
 
 # This function sets the description of the container.
